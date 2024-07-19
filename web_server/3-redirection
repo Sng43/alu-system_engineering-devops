@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# servers are the piece of software generaing and serving HTML pages
+# installing nginx on the web-01
+
+apt-get update -y
+apt-get install nginx -y
+sudo ufw allow 'Nginx HTTP'
+sh -c 'echo "Holberton School for the win!" > /var/www/html/index.html'
+sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=LHd447EafFY permanent;' /etc/nginx/sites-available/default
+service nginx restart
